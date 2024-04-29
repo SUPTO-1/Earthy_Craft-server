@@ -91,6 +91,13 @@ async function run() {
       const result = await cursor.toArray();
       res.send(result);
   })
+
+  app.get('/subcategory/:subcategoryName',async(req,res)=>{
+    const subcategoryName = req.params.subcategoryName;
+    const query = {subcategoryName: subcategoryName};
+    const result = await craftsCollection.find(query).toArray();
+    res.send(result);
+  })
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
