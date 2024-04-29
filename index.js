@@ -29,7 +29,7 @@ async function run() {
 
     
     const craftsCollection = client.db("earthyCraft").collection("crafts");
-
+    const subcategoryCollection = client.db("earthyCraft").collection("subcategory");
     app.get('/crafts',async(req, res)=>{
       const cursor = craftsCollection.find();
       const result = await cursor.toArray();
@@ -85,6 +85,12 @@ async function run() {
       const result = await craftsCollection.deleteOne(query);
       res.send(result);
     })
+
+    app.get('/subcategory',async(req, res)=>{
+      const cursor = subcategoryCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+  })
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
